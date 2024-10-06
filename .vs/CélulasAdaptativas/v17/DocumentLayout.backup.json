@@ -1,0 +1,54 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "H:\\gamedevelopment\\C\u00E9lulasAdaptativas\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{8B964655-1BD0-8DBD-2F95-5CAAB7E86371}|Assembly-CSharp.csproj|H:\\gamedevelopment\\C\u00E9lulasAdaptativas\\assets\\03_scripts\\c\u00E9lula.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8B964655-1BD0-8DBD-2F95-5CAAB7E86371}|Assembly-CSharp.csproj|solutionrelative:assets\\03_scripts\\c\u00E9lula.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8B964655-1BD0-8DBD-2F95-5CAAB7E86371}|Assembly-CSharp.csproj|h:\\gamedevelopment\\c\u00E9lulasadaptativas\\assets\\03_scripts\\controladorjuego.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8B964655-1BD0-8DBD-2F95-5CAAB7E86371}|Assembly-CSharp.csproj|solutionrelative:assets\\03_scripts\\controladorjuego.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ControladorJuego.cs",
+              "DocumentMoniker": "H:\\gamedevelopment\\C\u00E9lulasAdaptativas\\Assets\\03_Scripts\\ControladorJuego.cs",
+              "RelativeDocumentMoniker": "Assets\\03_Scripts\\ControladorJuego.cs",
+              "ToolTip": "H:\\gamedevelopment\\C\u00E9lulasAdaptativas\\Assets\\03_Scripts\\ControladorJuego.cs",
+              "RelativeToolTip": "Assets\\03_Scripts\\ControladorJuego.cs",
+              "ViewState": "AgIAADAAAAAAAAAAAAAgwFoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T18:14:37.498Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "C\u00E9lula.cs",
+              "DocumentMoniker": "H:\\gamedevelopment\\C\u00E9lulasAdaptativas\\Assets\\03_Scripts\\C\u00E9lula.cs",
+              "RelativeDocumentMoniker": "Assets\\03_Scripts\\C\u00E9lula.cs",
+              "ToolTip": "H:\\gamedevelopment\\C\u00E9lulasAdaptativas\\Assets\\03_Scripts\\C\u00E9lula.cs",
+              "RelativeToolTip": "Assets\\03_Scripts\\C\u00E9lula.cs",
+              "ViewState": "AgIAADIAAAAAAAAAAAAIwF4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T18:14:11.343Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
