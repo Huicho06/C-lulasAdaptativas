@@ -517,7 +517,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.033951227, b: 0.0047169924, a: 1}
+  m_Color: {r: 0.11121393, g: 0.41509432, b: 0.14899257, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -767,6 +767,10 @@ PrefabInstance:
       propertyPath: fondoImage
       value: 
       objectReference: {fileID: 790377381}
+    - target: {fileID: 6404395855203855753, guid: 67d3277173fc1574d8be8469d8e1dfd0, type: 3}
+      propertyPath: duracionDeRonda
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6404395855203855753, guid: 67d3277173fc1574d8be8469d8e1dfd0, type: 3}
       propertyPath: contadorVivosTexto
       value: 

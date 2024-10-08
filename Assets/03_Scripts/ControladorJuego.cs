@@ -8,13 +8,15 @@ public class ControladorJuego : MonoBehaviour
     public GameObject celulaPrefab;  // Prefab de la célula
     public int numeroDeCelulas = 5;  // Número de células a generar por ronda
     public float duracionDeRonda = 10f;  // Duración de cada ronda en segundos
-    public Image fondoImage;  // Referencia al componente Image que actúa como fondo
+
     public Text contadorPuntosTexto;  // Texto UI para mostrar los puntos
     public Text contadorVivosTexto;   // Texto UI para mostrar los sobrevivientes acumulados
 
     private int puntos = 0;  // Contador de puntos
     private int totalSobrevivientes = 0;  // Contador acumulativo de células sobrevivientes
     private Color colorSobrevivienteFinal = Color.clear;  // Color del último sobreviviente
+    private Color colorUltimaCelulaEliminada = Color.clear;  // Color de la última célula eliminada
+    private float maxTiempoDeVida = 0f;  // Máximo tiempo de vida de la célula sobreviviente
 
     private float tiempoRestante;  // Tiempo restante de la ronda
     private int celulasRestantes;  // Número de células que no han sido eliminadas
@@ -33,17 +35,15 @@ public class ControladorJuego : MonoBehaviour
         if (tiempoRestante <= 0)
         {
             FinalizarRonda();
-            IniciarRonda();  // Iniciar una nueva ronda
+            // Iniciar una nueva ronda
         }
+
     }
 
     void IniciarRonda()
     {
         tiempoRestante = duracionDeRonda;  // Reiniciar el temporizador de la ronda
         celulasRestantes = numeroDeCelulas;  // Reiniciar las células restantes
-
-        // Obtener el color del fondo del Image
-        Color colorFondo = fondoImage.color;
 
         // Generar células en posiciones aleatorias
         for (int i = 0; i < numeroDeCelulas; i++)
@@ -55,7 +55,6 @@ public class ControladorJuego : MonoBehaviour
             Célula scriptCelula = nuevaCelula.GetComponent<Célula>();
             if (scriptCelula != null)
             {
-                scriptCelula.SetColorFondo(colorFondo);  // Pasar el color del fondo
                 scriptCelula.SetColorSobreviviente(colorSobrevivienteFinal);  // Pasar el color del último sobreviviente
             }
         }
@@ -67,29 +66,48 @@ public class ControladorJuego : MonoBehaviour
     {
         // Aquí evaluamos las células que quedan vivas
         GameObject[] celulasRestantesObjetos = GameObject.FindGameObjectsWithTag("Celula");
-        float maxTiempoDeVida = 0f;  // Reiniciar el máximo tiempo de vida para la ronda actual
+        maxTiempoDeVida = 0f;  // Reiniciar el máximo tiempo de vida para la ronda actual
 
-        foreach (GameObject celula in celulasRestantesObjetos)
+        if (celulasRestantesObjetos.Length > 0)
         {
-            Célula scriptCelula = celula.GetComponent<Célula>();
-            if (scriptCelula != null)
+            // Si hay células vivas, evaluarlas
+            foreach (GameObject celula in celulasRestantesObjetos)
             {
-                float tiempoDeVida = scriptCelula.ObtenerTiempoDeVida();
-                if (tiempoDeVida > maxTiempoDeVida)
+                Célula scriptCelula = celula.GetComponent<Célula>();
+                if (scriptCelula != null)
                 {
-                    maxTiempoDeVida = tiempoDeVida;
-                    colorSobrevivienteFinal = scriptCelula.ObtenerColor();  // Guardamos el color del sobreviviente con más tiempo
+                    float tiempoDeVida = scriptCelula.ObtenerTiempoDeVida();
+                    if (tiempoDeVida > maxTiempoDeVida)
+                    {
+                        maxTiempoDeVida = tiempoDeVida;
+                        colorSobrevivienteFinal = scriptCelula.ObtenerColor();  // Guardamos el color del sobreviviente con más tiempo
+                    }
+
+                    // Aumentamos el contador de sobrevivientes
+                    totalSobrevivientes++;
                 }
 
-                // Aumentamos el contador de sobrevivientes
-                totalSobrevivientes++;
+                // Destruimos todas las células al final de la ronda
+                Destroy(celula);
             }
-
-            // Destruimos todas las células al final de la ronda
-            Destroy(celula);
+        }
+        else
+        {
+            // Si no hay células restantes, usar el color de la última célula eliminada
+            Debug.Log("No hay células vivas, usando el color de la última célula eliminada: " + colorUltimaCelulaEliminada);
+            colorSobrevivienteFinal = colorUltimaCelulaEliminada;  // Adaptar al color de la última célula eliminada
         }
 
         ActualizarUI();  // Actualizar los textos UI al final de la ronda
+        IniciarRonda();  // Iniciar una nueva ronda
+    }
+
+    void AdaptarCeldasAlSobreviviente()
+    {
+        // Lógica para adaptar las nuevas células al color del sobreviviente
+        // Puedes implementar la lógica para cambiar el color del prefab o crear nuevas células adaptadas
+        Debug.Log("Adaptando nuevas células al color del sobreviviente: " + colorSobrevivienteFinal);
+        // Aquí puedes implementar la lógica para crear nuevas células con el color sobreviviente
     }
 
     // Método llamado por las células cuando son eliminadas
@@ -97,6 +115,9 @@ public class ControladorJuego : MonoBehaviour
     {
         puntos++;  // Aumentar el puntaje       
         celulasRestantes--;  // Reducir el número de células vivas
+
+        // Almacenar el color de la última célula eliminada
+        colorUltimaCelulaEliminada = colorEliminado;
 
         ActualizarUI();  // Actualizar los textos UI tras eliminar una célula
     }

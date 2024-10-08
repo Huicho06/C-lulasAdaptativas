@@ -8,7 +8,6 @@ public class Célula : MonoBehaviour
     private AudioSource audioSource;
     private ControladorJuego controladorJuego;  // Referencia al controlador del juego
 
-    private Color colorFondo;  // Color hacia el cual la célula se intentará adaptar (color del fondo)
     private Color colorSobreviviente;  // Color de las células que sobrevivieron más tiempo
     private Color colorActual;  // Color actual de la célula
     private float tiempoDeVida = 0f;  // Cuánto tiempo ha sobrevivido la célula
@@ -28,11 +27,6 @@ public class Célula : MonoBehaviour
     {
         // Incrementamos el tiempo de vida de la célula
         tiempoDeVida += Time.deltaTime;
-    }
-
-    public void SetColorFondo(Color nuevoColorFondo)
-    {
-        colorFondo = nuevoColorFondo;  // Establecer el color del fondo
     }
 
     public void SetColorSobreviviente(Color nuevoColorSobreviviente)
@@ -67,13 +61,6 @@ public class Célula : MonoBehaviour
         return new Color(r, g, b);
     }
 
-    void AdaptarseAlColorSobreviviente()
-    {
-        // **Adaptarse más rápido al color del fondo**
-        colorActual = Color.Lerp(colorActual, colorFondo, adaptacionFactor);  // Adaptarse rápidamente al color del fondo
-        GetComponent<SpriteRenderer>().color = colorActual;
-    }
-
     void OnMouseDown()
     {
         // Solo permitimos un clic por célula
@@ -95,14 +82,6 @@ public class Célula : MonoBehaviour
         }
 
         Destroy(gameObject, sonidoEliminacion.length);  // Destruir tras reproducir el sonido
-    }
-
-    public void EvaluarRendimiento(bool sobrevivio)
-    {
-        if (sobrevivio)
-        {
-            AdaptarseAlColorSobreviviente();  // Adaptarse rápidamente al color del fondo
-        }
     }
 
     public float ObtenerTiempoDeVida()
